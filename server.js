@@ -19,7 +19,7 @@ const config = {
     baseURL: 'http://localhost:3000',
     clientID: process.env.clientID,
     issuerBaseURL: 'https://dev-z2qulv0i3zzrm78i.uk.auth0.com'
-  };
+};
 
 app.use(auth(config));
 app.use(express.urlencoded({ extended: false }));
@@ -34,6 +34,7 @@ app.get('/' || '/home', async (request, response) => {
 
 app.get('/profile', requiresAuth(), async (request, response) => {
     const user = request.oidc.user;
+    console.log(user);
 
     return response.render('Dashboard/profile', {
         user: user
@@ -41,5 +42,5 @@ app.get('/profile', requiresAuth(), async (request, response) => {
 });
 
 app.listen(process.env.PORT || 3000, () => {
-    console.log('Beep!');
+    return console.log('Beep! Running on http://localhost:' + process.env.PORT || 3000);
 });
