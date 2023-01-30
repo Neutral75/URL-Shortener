@@ -1,16 +1,43 @@
 const mongoose = require('mongoose');
 
+const country = new mongoose.Schema({
+    name: { 
+        type: String, 
+        required: true 
+    },
+
+    clicks: { 
+        type: Number,
+        default: 0
+    }
+});
+
+const device = new mongoose.Schema({
+    name: { 
+        type: String, 
+        required: true 
+    },
+
+    clicks: { 
+        type: Number,
+        default: 0
+    }
+});
+
 const link = new mongoose.Schema({
     email: { // Email of the user that created the link
-        type: String
+        type: String,
+        required: true
     },
 
-    shortLink: { // Shortened link
-        type: String
+    shortURL: { // Shortened link
+        type: String,
+        required: true 
     },
 
-    longLink: { // Original link
-        type: String
+    longURL: { // Original link
+        type: String,
+        required: true 
     },
 
     clicks: { //
@@ -18,44 +45,9 @@ const link = new mongoose.Schema({
         default: 0
     },
 
-    countries: {
-        'BR, MX, US': { // Brazil, Mexico, United States
-            type: Number,
-            default: 0
-        },
+    countries: [country],
 
-        'DE, FR, UK': { // Germany, France, United Kingdom
-            type: Number,
-            default: 0
-        },
-
-        'CN, TR, RU': { // China, Turkey, Russia
-            type: Number,
-            default: 0
-        },
-
-        'IN, PK, NG': { // India, Pakistan, Nigeria
-            type: Number,
-            default: 0
-        },
-
-        'Other': { // All other countries
-            type: Number,
-            default: 0
-        },
-    },
-
-    devices: {
-        'Mobile': { // Amount of clicks on a mobile phone
-            type: Number,
-            default: 0
-        },
-
-        'Computer': { // Amount of clicks on a computer
-            type: Number,
-            default: 0
-        }
-    },
+    devices : [device],
 
     date: { // Date the link was created
         type: String

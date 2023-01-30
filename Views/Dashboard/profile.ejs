@@ -32,8 +32,44 @@
 </head>
 
 <body>
-    <p>Name: <%= user.name %>
-    </p>
+    <p>Name: <%= userData.name %></p>
+    <p>Email: <%= userData.email %></p>
+    <p>Links: <%= userSchema.links %></p>
+    <p>Premium: <%= userSchema.premium %></p>
+    <br>
+    <br>
+    <form action="/link" method="post">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="name@example.com" value="<%= userData.email %>" style="display: none;"/>
+        <br>
+        <label for="longURL">Long URL</label>
+        <input type="url" id="longURL" name="longURL" placeholder="https://example.com/" required />
+        <br>
+        <label for="shortLink">https://example.com/</label>
+        <% if (userSchema.premium === true) { %>
+            <input type="text" pattern="[A-Za-z0-9\-\_]" id="shortURL" name="shortURL" placeholder="example" minlength="5" maxlength="25" />
+        <% } else { %>  
+            <input type="text" pattern="[A-Za-z0-9\-\_]" id="shortURL" name="shortURL" placeholder="example"minlength="5" maxlength="25" />
+        <% } %>
+
+        <button type="submit">Shorten it!</button>
+    </form>
+
+    <script>
+        const characters = 'bDfHjKlNpRtVxZAcEgIkMoQsUwY_0123456789-BdFhJkLnPrTvXzaCeGiKmOqSuW';
+
+        function linkID(length) {
+            let result = '';
+            const charactersLength = characters.length;
+            for (let i = 0; i < length; i++) {
+                result += characters.charAt(Math.floor(Math.random() * charactersLength));
+            };
+
+            return result;
+        };
+        
+        document.getElementById('shortURL').value = linkID(7);
+    </script>
 </body>
 
 </html>

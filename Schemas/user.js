@@ -13,6 +13,10 @@ const user = new mongoose.Schema({
     links: { // Amount of links shortened
         type: Number,
         default: 0
+    },
+
+    date: { // Date the users account was created
+        type: String
     }
 });
 
