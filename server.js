@@ -121,7 +121,7 @@ app.post('/link', async (request, response) => {
             email: request.body.email.toLowerCase()
         });
 
-        userSchema.links += 0;
+        userSchema.links += 1;
         userSchema.save();
     };
 
@@ -129,6 +129,7 @@ app.post('/link', async (request, response) => {
         email: request.body.email,
         shortURL: request.body.shortURL,
         longURL: request.body.longURL,
+        clicks: 0,
         date: new Date().toLocaleDateString('en-GB', { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' })
     });
 
