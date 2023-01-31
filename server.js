@@ -77,10 +77,14 @@ app.get('/:link', async (request, response) => {
     const ip = request.headers['x-forwarded-for'];
     const geo = geoip.lookup(ip);
 
+    console.log(ip);
+    console.log(geo);
+
     link.findOne({
         shortURL: request.params.link
     }, function (error, link) {
         if (error) {
+            console.log(error)
             return handleError(error);
         };
         
@@ -88,12 +92,12 @@ app.get('/:link', async (request, response) => {
         if (country) {
             country.clicks++;
         } else {
-            
             link.countries.push({ name: geo.country, clicks: 1 });
         };
 
         link.save(function (error) {
             if (error) {
+                console.log(error);
                 return handleError(error);
             };
 
