@@ -20,7 +20,7 @@ const config = {
     authRequired: false,
     auth0Logout: true,
     secret: process.env.secret,
-    baseURL: 'https://test-orel.onrender.com',
+    baseURL: 'https://ruby-plain-cormorant.cyclic.app/',
     clientID: process.env.clientID,
     issuerBaseURL: 'https://dev-z2qulv0i3zzrm78i.uk.auth0.com'
 };
