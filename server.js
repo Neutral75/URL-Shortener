@@ -121,7 +121,7 @@ app.post('/link', async (request, response) => {
             email: request.body.email.toLowerCase()
         });
 
-        userSchema.links += 1;
+        userSchema.links += 0;
         userSchema.save();
     };
 
