@@ -1,4 +1,23 @@
 {
+  "name": "url-shortener",
+  "version": "1.0.0",
+  "description": "=",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js",
+    "start": "node server.js",
+    "build": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Neutral75/URL-Shortener.git"
+  },
+  "author": "Neutral75",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Neutral75/URL-Shortener/issues"
+  },
+  "homepage": "https://github.com/Neutral75/URL-Shortener#readme",
   "dependencies": {
     "dotenv": "^16.0.3",
     "ejs": "^3.1.8",
