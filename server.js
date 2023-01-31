@@ -92,7 +92,10 @@ app.get('/:link', async (request, response) => {
         if (country) {
             country.clicks++;
         } else {
-            link.countries.push({ name: geo.country, clicks: 1 });
+            link.countries.push({ 
+                name: geo.country,
+                clicks: 1 
+            });
         };
 
         link.save(function (error) {

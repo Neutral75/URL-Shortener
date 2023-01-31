@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 const country = new mongoose.Schema({
     name: { 
-        type: String, 
-        required: true 
+        type: String,
+        default: 'Unknown'
     },
 
     clicks: { 
