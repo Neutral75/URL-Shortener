@@ -80,36 +80,29 @@ app.get('/:link', async (request, response) => {
     console.log(ip);
     console.log(geo);
 
-    link.findOne({
+    await link.findOne({
         shortURL: request.params.link
-    }, function (error, link) {
+    }, function (link, error) {
         if (error) {
-            console.log(error)
+            console.log(error);
             return handleError(error);
         };
-        
-        const country = link.countries.find(c => c.name === geo.country);
+
+        const country = link.countries.find(c => c.name === geo.country || 'Unknown');
 
         if (country) {
-            return country.clicks++;
+            country.clicks += 1;
         } else {
-            link.countries.push({ 
+            link.countries.push({
                 name: geo.country,
-                clicks: 1 
+                clicks: 1
             });
         };
 
-        link.save(function (error) {
-            if (error) {
-                console.log(error);
-                return handleError(error);
-            };
-
-            console.log(link);
-        });
+        link.save();
     });
 
-    linkSchema.clicks++;
+    linkSchema.clicks += 1;
     linkSchema.save();
 
     return response.redirect(linkSchema.longURL);
