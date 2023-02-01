@@ -80,11 +80,11 @@ app.get('/:link', async (request, response) => {
     console.log(ip);
     console.log(geo);
 
-    await link.findOne({
+    link.findOne({
         shortURL: request.params.link
-    }, function (link, error) {
+    }, function (error, link) {
         if (error) {
-            console.log(error);
+            console.log(error)
             return handleError(error);
         };
 
@@ -99,7 +99,14 @@ app.get('/:link', async (request, response) => {
             });
         };
 
-        link.save();
+        link.save(function (error) {
+            if (error) {
+                console.log(error);
+                return handleError(error);
+            };
+
+            console.log(link);
+        });
     });
 
     linkSchema.clicks += 1;
