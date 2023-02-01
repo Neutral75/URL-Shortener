@@ -89,8 +89,9 @@ app.get('/:link', async (request, response) => {
         };
         
         const country = link.countries.find(c => c.name === geo.country);
+
         if (country) {
-            country.clicks++;
+            country.clicks += 1;
         } else {
             link.countries.push({ 
                 name: geo.country,
@@ -108,7 +109,7 @@ app.get('/:link', async (request, response) => {
         });
     });
 
-    linkSchema.clicks++;
+    linkSchema.clicks += 1;
     linkSchema.save();
 
     return response.redirect(linkSchema.longURL);
@@ -132,7 +133,6 @@ app.post('/link', async (request, response) => {
         email: request.body.email,
         shortURL: request.body.shortURL,
         longURL: request.body.longURL,
-        clicks: 0,
         date: new Date().toLocaleDateString('en-GB', { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' })
     });
 
