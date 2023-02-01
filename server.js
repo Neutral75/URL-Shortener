@@ -91,7 +91,7 @@ app.get('/:link', async (request, response) => {
         const country = link.countries.find(c => c.name === geo.country);
 
         if (country) {
-            country.clicks += 1;
+            return country.clicks++;
         } else {
             link.countries.push({ 
                 name: geo.country,
@@ -109,7 +109,7 @@ app.get('/:link', async (request, response) => {
         });
     });
 
-    linkSchema.clicks += 1;
+    linkSchema.clicks++;
     linkSchema.save();
 
     return response.redirect(linkSchema.longURL);
